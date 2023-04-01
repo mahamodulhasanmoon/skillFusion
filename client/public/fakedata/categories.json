@@ -1,0 +1,22 @@
+[
+    {
+        "name":"Technology and computer science",
+        "headline":"programming, data analysis, cybersecurity, and web development",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdQXY-qLpRtNzNrlcjk-bzmWe65M_6oX3WP5PXgYjGw&s"
+    },
+    {
+        "name":"Personal development",
+        "headline":"communication skills, leadership, and time management",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdQXY-qLpRtNzNrlcjk-bzmWe65M_6oX3WP5PXgYjGw&s"
+    },
+    {
+        "name":"Business and finance",
+        "headline":"accounting, marketing, entrepreneurship, and investing.",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdQXY-qLpRtNzNrlcjk-bzmWe65M_6oX3WP5PXgYjGw&s"
+    },
+    {
+        "name":"Career development",
+        "headline":"job search strategies, resume writing, and career advancement",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXdQXY-qLpRtNzNrlcjk-bzmWe65M_6oX3WP5PXgYjGw&s"
+    }
+]
