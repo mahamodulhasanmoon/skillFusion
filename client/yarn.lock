@@ -7612,6 +7612,11 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-whatsapp-chat-widget@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/react-whatsapp-chat-widget/-/react-whatsapp-chat-widget-1.1.6.tgz#7d6c26fe4efbedb2705f93645a5a9047f259dfab"
+  integrity sha512-rmUBtXpTapr0wFlEAQxwnHsPwdTNQCkUpSt2vpMF5l2Q1ApMV0OIOeNiWv2kktcRfEUNb2kgKau4rHfnrJyW4w==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
