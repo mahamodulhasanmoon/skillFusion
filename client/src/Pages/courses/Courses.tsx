@@ -28,7 +28,7 @@ const Courses = () => {
 
                 {/* courses page Layouts */}
 
-                <main className='sticky'>
+                <main className='relative'>
                     <CourseHeader />
 
                     <div className="grid " style={{ gridTemplateColumns: '350px 1fr' }}>
