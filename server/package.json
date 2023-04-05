@@ -1,16 +1,9 @@
 {
   "name": "skill-fusion",
   "version": "1.0.0",
-  "description": "learning management system website",
+  "description": "SkillFusion is an educational platform that allows users to enroll in courses, post for tuitions, and find tutors. The frontend of the platform will be developed using React, Redux, Tailwind CSS, and other related packages. On the other hand, the backend of the platform will be developed using Node.js, Mongoose, Express, and other related technologies.",
   "main": "index.js",
-  "repository": "https://github.com/mahamodulhasanmoon/skillFusion/server",
+  "repository": "https://github.com/mahamodulhasanmoon/skillFusion/tree/main/server",
   "author": "Mahamodul Hasan Moon",
-  "license": "none",
-  "private": false,
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mongodb": "^5.1.0"
-  }
+  "license": "MIT"
 }
