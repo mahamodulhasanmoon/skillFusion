@@ -2,10 +2,12 @@ const Mongoose  = require("mongoose");
 
 const tuitionSchema= Mongoose.Schema({
     
-    name:{
-        
-    }
+
+   
+   
     
+},{
+    timestamps: true,
 });
 // make models for this schemas 
 
