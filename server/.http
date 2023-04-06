@@ -1,0 +1,8 @@
+### for tuitions 
+
+### default
+GET http://localhost:5000
+
+### tuiions api
+
+GET http://localhost:5000/api/v1/tuitions
