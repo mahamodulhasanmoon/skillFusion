@@ -3,6 +3,7 @@ const {
   loginService,
   loginServiceById,
 } = require("../services/user.service");
+const bcrypt = require("bcryptjs")
 
 exports.createUser = async (req, res, next) => {
   try {
@@ -48,7 +49,21 @@ exports.loginUser = async (req, res, next) => {
         message: "user not found",
       });
     }
-    
+
+    // 04. password valid or not 
+
+    const isPassValid = bcrypt.compareSync(password,user.password)
+
+    if (!isPassValid) {
+        return res.status(403).json({
+            status: "failed",
+            message: "invalid email or password",
+          });
+        
+    }
+
+    //05 .
+
 
     //  send final response
     res.status(200).json({
