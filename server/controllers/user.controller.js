@@ -14,7 +14,8 @@ exports.createUser= async(req,res,next) => {
         res.status(400)
         .json({
             status:'failed',
-            message: error.message
+            message: "403 Bad Request",
+            error: error.message
         });
       }
 
