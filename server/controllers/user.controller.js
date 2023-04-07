@@ -105,7 +105,7 @@ exports.loginUser = async (req, res, next) => {
 exports.verifyTokenController = async(req, res, next) => {
 try{
 
-    const  user = await findUserByEmail()
+    const  user = await findUserByEmail(req.user?.email)
     res.status(200).json({
         status: "success",
           message: "User Logged in successfully",
@@ -114,8 +114,8 @@ try{
 }
     catch (error) {
         res.status(400).json({
-          status: "failed",
-          message: "403 Bad Request",
+          status: "503",
+          message: "internal error",
           error: error.message,
         });
       }
