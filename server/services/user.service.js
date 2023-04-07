@@ -7,7 +7,7 @@ return  user
 
 }
 
-exports.loginServiceById = async (email)=>{
+exports.findUserByEmail = async (email)=>{
 
 return  await  User.findOne({email})
 

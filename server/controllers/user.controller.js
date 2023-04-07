@@ -1,9 +1,10 @@
 const {
   signupService,
-  loginService,
-  loginServiceById,
+
+  findUserByEmail: loginServiceById,
+  findUserByEmail,
 } = require("../services/user.service");
-const bcrypt = require("bcryptjs");
+
 const { genarateToken } = require("../utils/tokens");
 
 exports.createUser = async (req, res, next) => {
@@ -99,3 +100,24 @@ exports.loginUser = async (req, res, next) => {
     });
   }
 };
+
+
+exports.verifyTokenController = async(req, res, next) => {
+try{
+
+    const  user = await findUserByEmail()
+    res.status(200).json({
+        status: "success",
+          message: "User Logged in successfully",
+          data: user
+    })
+}
+    catch (error) {
+        res.status(400).json({
+          status: "failed",
+          message: "403 Bad Request",
+          error: error.message,
+        });
+      }
+
+}
