@@ -50,6 +50,11 @@ const userSchema = Schema(
       enum: ["student", "teacher", "admin"],
       default: "student",
     },
+    status: {
+      type: String,
+      enum: ["disabled", "verified", "active"],
+      default: "verified",
+    },
     firstName: {
       type: String,
       required: [true, "Please provide a first name"],
@@ -89,6 +94,13 @@ userSchema.pre('save',  async function  (next) {
   }
 
 })
+
+// create a method for compare password
+
+userSchema.methods.comparePassword = function (password,hash)  {
+  const isPassValid = bcrypt.compareSync(password,hash)
+  return isPassValid
+}
 
 
 const User = model("User", userSchema);

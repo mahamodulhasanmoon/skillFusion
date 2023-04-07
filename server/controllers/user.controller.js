@@ -3,7 +3,8 @@ const {
   loginService,
   loginServiceById,
 } = require("../services/user.service");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const { genarateToken } = require("../utils/tokens");
 
 exports.createUser = async (req, res, next) => {
   try {
@@ -52,7 +53,7 @@ exports.loginUser = async (req, res, next) => {
 
     // 04. password valid or not 
 
-    const isPassValid = bcrypt.compareSync(password,user.password)
+    const isPassValid = user.comparePassword(password,user.password)
 
     if (!isPassValid) {
         return res.status(403).json({
@@ -62,13 +63,33 @@ exports.loginUser = async (req, res, next) => {
         
     }
 
-    //05 .
+    //05 . check accout disabled or actve
+
+    if (!user.status === "verified") {
+
+        return res.status(403).json({
+            status: "failed",
+            message: "please verify your account check your mailbox",
+          });
+        
+    }
+
+    // 06 . verify your account done now Genarate Token
+
+    const token = genarateToken(user)
+   // 07. remove password
+
+   const {password:pwd, ...others} = user.toObject();
 
 
     //  send final response
     res.status(200).json({
       status: "success",
       message: "Successfully Logged in",
+      data:{
+        others,
+        token,
+      }
     });
   } catch (error) {
     res.status(400).json({
