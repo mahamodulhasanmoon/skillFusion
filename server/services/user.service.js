@@ -1,4 +1,7 @@
+const User = require("../models/User")
+
 exports.signupService = async (authInfo)=>{
-const info = await authInfo
-console.log(info)
+const user = await User.create(authInfo)
+return  user
+
 }
