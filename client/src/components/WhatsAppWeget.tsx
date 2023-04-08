@@ -1,5 +1,5 @@
 import WhatsAppWidget from 'react-whatsapp-chat-widget';
-import "react-whatsapp-chat-widget/index.css";
+import "../assets/styles/WhatsAppWeget.css";
 import logo from '../assets/images/logo.png'
 
 
@@ -25,7 +25,7 @@ const WhatsAppWeget = () => {
 			headerCaption="Online"
 			bodyBgColor="#4b6385"
 			chatPersonName="Support"
-			chatMessage={<>Hi there 👋 <br /><br /> How can I help you?</>}
+			chatMessage={<>Hi there 👋 <br /> How can I help you?</>}
 			footerBgColor="#111827"
 			placeholder="Type a message.."
 			btnBgColor="#22C55E"
