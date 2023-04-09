@@ -121,3 +121,23 @@ try{
       }
 
 }
+
+
+exports.uploadProfilePicture = async(req,res,next)=>{
+  try {
+
+console.log(req.file.path)
+
+    res.status(200).json({
+      status: "success",
+        message: "upload successfully",
+       
+  })
+  }     catch (error) {
+    res.status(400).json({
+      status: "503",
+      message: "internal error could not uploaded file",
+      error: error.message,
+    });
+  }
+}

@@ -1,4 +1,6 @@
-import WhatsAppWidget from 'react-whatsapp-chat-widget';
+
+ // @ts-ignore
+import WhatsAppWidget from "react-whatsapp-chat-widget";
 import "../assets/styles/WhatsAppWeget.css";
 import logo from '../assets/images/logo.png'
 

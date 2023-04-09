@@ -2,13 +2,16 @@ const express = require('express')
 const cors = require('cors');
 const tuitionRouter = require('./routes/TuitionRoute');
 const authRouter = require('./routes/authRoute');
-
+const bodyParser = require('body-parser')
 const app = express()
 
 
 //middlewares
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use('/uploads',express.static('uploads'))
 
 // routes   
 
