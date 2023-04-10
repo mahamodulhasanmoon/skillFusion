@@ -5,8 +5,11 @@ import { RootState } from '../../../app/store';
 
 const NavBar = () => {
 
-const email = "a"
-const username = "akash"
+
+    const {authInfo }= useSelector((state:RootState)=> state.auth)
+
+    
+  
 
     return (
         <nav className="bg-gray-900 sticky top-0 z-50">
@@ -21,17 +24,13 @@ const username = "akash"
                         <NavLink className=' mx-5 font-semibold text-lg' to='/find-tutions'>Find Tuitions</NavLink>
                         <NavLink className=' mx-5 font-semibold text-lg' to='/tutors'>Tutors</NavLink>
                     </div>
-{/* <div className="md:hidden flex items-center flex-col">
-    <span className='bg-white h-[2px] w-[30px]'>2</span>
-    <span className='bg-white h-[2px] w-[30px]'>2</span>
-    <span className='bg-white h-[2px] w-[30px]'>2</span>
-</div> */}
+
 
                    <div>
                     {
-                        !email?  <NavLink className='bg-primary px-4 py-2 rounded' to='/login'>Login</NavLink>
+                        !authInfo?.email?  <NavLink className='bg-primary px-4 py-2 rounded' to='/login'>Login</NavLink>
                         :
-                        <NavLink className='bg-primary px-4 py-2 rounded' to='/login'>{username}</NavLink>
+                        <NavLink className='bg-primary px-4 py-2 rounded' to='/login'>{authInfo?.name}</NavLink>
                     }
                   
                    </div>

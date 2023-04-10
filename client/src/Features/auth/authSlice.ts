@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export interface authState {
-    authInfo: {} | null;
+    authInfo: any;
     token: string | null;
   };
 
