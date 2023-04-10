@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoginUserMutation } from "../../Features/api/apiSlice";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 
 interface LoginFormValues {
@@ -10,34 +10,48 @@ interface LoginFormValues {
   password: string;
 }
 
+interface LoginData {
+  error:Object
+}
+
 const Login = () => {
+  const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { register, formState: { errors }, handleSubmit } = useForm<LoginFormValues>();
-const [loginUser,{isError,isLoading,error,data}] = useLoginUserMutation()
+const [loginUser,{isError,isLoading,error,data,isSuccess}] = useLoginUserMutation()
 
 
 
   const onSubmit = async(data: LoginFormValues) => {
 
+ setErrorMessage("")
   
-    setErrorMessage("")
-    try {
-     const res = loginUser(data)
-     console.log(res)
-      
+     const res =  loginUser(data)
+     
+
       // localStorage.setItem("token", res.data.data.token)
-    }catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        const { response } = err;
-        setErrorMessage(response?.data?.message || "An unknown error occurred.");
-      } else {
+  
+
+    
+  };
+
+  useEffect(()=>{
+
+    if(isSuccess){
+      navigate('/')
+
+    }else{
+      if (isError) {
+        
         setErrorMessage("An unknown error occurred.");
       }
       setTimeout(()=>{
         setErrorMessage("");
       }, 1500);
     }
-  };
+
+  },[isSuccess,isError])
+    
 
   
   return (
