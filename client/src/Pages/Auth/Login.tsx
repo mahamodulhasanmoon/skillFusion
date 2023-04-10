@@ -1,8 +1,10 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLoginUserMutation } from "../../Features/api/apiSlice";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../Features/api/authApi";
+import { Link,  useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Features/auth/authSlice";
 
 
 interface LoginFormValues {
@@ -10,47 +12,54 @@ interface LoginFormValues {
   password: string;
 }
 
-interface LoginData {
-  error:Object
+interface LoginUserError {
+  isError:Boolean;
+  isLoading:Boolean;
+  error:{
+    data:{
+      message:String;
+    }
+  };
+  isSuccess:Boolean;
+  data:Object;
+  // add any other properties that the error object may have
 }
 
 const Login = () => {
   const navigate = useNavigate()
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<any>("");
   const { register, formState: { errors }, handleSubmit } = useForm<LoginFormValues>();
-const [loginUser,{isError,isLoading,error,data,isSuccess}] = useLoginUserMutation()
+const [loginUser,{isError,isLoading,error,data,isSuccess}] = useLoginUserMutation<LoginUserError>()
 
+const msg = error?.data?.message
 
+const dispatch = useDispatch()
 
   const onSubmit = async(data: LoginFormValues) => {
-
  setErrorMessage("")
-  
-     const res =  loginUser(data)
-     
-
-      // localStorage.setItem("token", res.data.data.token)
-  
-
+ await loginUser(data)
     
   };
 
   useEffect(()=>{
 
     if(isSuccess){
+      dispatch(setUser(data))
       navigate('/')
 
     }else{
       if (isError) {
         
-        setErrorMessage("An unknown error occurred.");
+        
+        setErrorMessage(msg || 'unknown error occurred');
+        
       }
       setTimeout(()=>{
         setErrorMessage("");
       }, 1500);
     }
 
-  },[isSuccess,isError])
+  },[isSuccess,isError,navigate,dispatch,data])
     
 
   
