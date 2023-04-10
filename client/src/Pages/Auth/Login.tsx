@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLoginUserMutation } from "../../Features/api/apiSlice";
+import { Link } from "react-router-dom";
+
 
 interface LoginFormValues {
   email: string;
@@ -10,13 +13,19 @@ interface LoginFormValues {
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { register, formState: { errors }, handleSubmit } = useForm<LoginFormValues>();
+const [loginUser,{isError,isLoading,error,data}] = useLoginUserMutation()
+
 
 
   const onSubmit = async(data: LoginFormValues) => {
+
+  
     setErrorMessage("")
     try {
-      const res = await axios.post("http://localhost:5000/api/v1/login", data);
-      console.log(res.data);
+     const res = loginUser(data)
+     console.log(res)
+      
+      // localStorage.setItem("token", res.data.data.token)
     }catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         const { response } = err;
@@ -55,8 +64,13 @@ const Login = () => {
             
             <div className="mt-5">
             <p className=" text-[#ff0000]">{errorMessage}</p>
-              <input type="submit" className='p-2 mt-2 w-full bg-primary text-white font-semibold border rounded outline-none placeholder:px-3' />
+           
+
+              <input type="submit" className='p-2 mt-2 w-full bg-primary text-white font-semibold border rounded outline-none placeholder:px-3' 
+              disabled={Boolean(errors.email || errors.password)}
+              />
             </div>
+            <p className="pt-4"> <span className="text-text">New user ? </span> <Link className="text-primary" to='/signup'>signup here</Link> </p>
             
           </form>
         </div>

@@ -4,14 +4,14 @@ const validator = require("validator");
 
 const userSchema = Schema(
   {
-    email: {
+    name: {
       type: String,
-      validate: [validator.isEmail, "Provide a valid Email"],
+      required: [true, "Please provide a first name"],
       trim: true,
-      lowercase: true,
-      unique: [true, "email must be unique"],
-      required: [true, "Email address is required"],
+      minLength: [3, "Name must be at least 3 characters."],
+      maxLength: [100, "Name is too large"],
     },
+
     username: {
       type: String,
      unique:[true, "username must be unique"],
@@ -19,6 +19,14 @@ const userSchema = Schema(
       lowercase: true,
       unique: true,
       required: [true, "username is required"],
+    },
+    email: {
+      type: String,
+      validate: [validator.isEmail, "Provide a valid Email"],
+      trim: true,
+      lowercase: true,
+      unique: [true, "email must be unique"],
+      required: [true, "Email address is required"],
     },
     password: {
       type: String,
@@ -55,20 +63,7 @@ const userSchema = Schema(
       enum: ["disabled", "verified", "active"],
       default: "verified",
     },
-    firstName: {
-      type: String,
-      required: [true, "Please provide a first name"],
-      trim: true,
-      minLength: [3, "Name must be at least 3 characters."],
-      maxLength: [100, "Name is too large"],
-    },
-    lastName: {
-      type: String,
-      required: [true, "Please provide a first name"],
-      trim: true,
-      minLength: [3, "Name must be at least 3 characters."],
-      maxLength: [100, "Name is too large"],
-    },
+
   },
   {
     timestamps: true,
