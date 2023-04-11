@@ -14,6 +14,7 @@ exports.createUser = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       message: "Successfully created account",
+      data: user
     });
   } catch (error) {
     res.status(400).json({
@@ -60,6 +61,7 @@ exports.loginUser = async (req, res, next) => {
         return res.status(403).json({
             status: "failed",
             message: "invalid email or password",
+            
           });
         
     }
