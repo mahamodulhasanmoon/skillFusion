@@ -38,7 +38,7 @@ const navigate = useNavigate()
   
   const dispatch = useDispatch()
   const msg = error?.data?.message
-  console.log(data)
+
   
     const onSubmit = async(data: SignupFromValues) => {
    setErrorMessage("")
@@ -99,15 +99,6 @@ const navigate = useNavigate()
               />
               {errors.email && <p className=" text-[#ff0000]">This field is required</p>}
             </div>
-
-            <div className='mt-5'>
-              {/* <label htmlFor="password">Password</label> <br /> */}
-              <input type="password" placeholder='password' className='p-2 mt-2 w-full border rounded outline-none placeholder:px-3'
-                {...register("password", { required: true })}
-              />
-              {errors.password && <p className=" text-[#ff0000]">This field is required</p>}
-            </div>
-
             <div className="mt-5">
               <p  className="py-3 ml-2 font-semibold" >Join as :</p>
             <div className="flex items-center gap-10 ">
@@ -122,6 +113,16 @@ const navigate = useNavigate()
 
     </div>
             </div>
+
+            <div className='mt-5'>
+              {/* <label htmlFor="password">Password</label> <br /> */}
+              <input type="password" placeholder='password' className='p-2 mt-2 w-full border rounded outline-none placeholder:px-3'
+                {...register("password", { required: true })}
+              />
+              {errors.password && <p className=" text-[#ff0000]">This field is required</p>}
+            </div>
+
+
 
             <div className='mt-5'>
               {/* <label htmlFor="password">Password</label> <br /> */}

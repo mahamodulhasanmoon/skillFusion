@@ -18,7 +18,7 @@ const authSlice = createSlice({
         setUser : (state, action)=>{
             console.log(action.payload.data)
 
-            state.authInfo = action.payload.data
+            state.authInfo = action.payload.data.userInfo
             state.token = action.payload.token
             localStorage.setItem('user', JSON.stringify(action.payload.data.token))
 

@@ -9,12 +9,17 @@ const { genarateToken } = require("../utils/tokens");
 
 exports.createUser = async (req, res, next) => {
   try {
-    const user = await signupService(req.body);
-
+    const userData = await signupService(req.body);
+    
+    const token = genarateToken(userData.email)
     res.status(200).json({
       status: "success",
       message: "Successfully created account",
-      data: user
+      data: {
+        userInfo :userData,
+        token
+
+      }
     });
   } catch (error) {
     res.status(400).json({
@@ -43,6 +48,7 @@ exports.loginUser = async (req, res, next) => {
     // 02. provide info in controller
 
     const user = await loginServiceById(email);
+  
 
     // 03 check user is registered or not   registered
 
@@ -83,7 +89,7 @@ exports.loginUser = async (req, res, next) => {
    // 07. remove password
 
    const {password:pwd, ...others} = user.toObject();
-
+   console.log(others)
 
     //  send final response
     res.status(200).json({
